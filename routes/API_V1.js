@@ -2,6 +2,7 @@ const http = require("http");
 const express = require("express");
 const engine = require('../engine/');
 const craw = require("../utils/web-craw");
+const proxy = require("../utils/proxy-craw");
 
 const Router = new express.Router();
 
@@ -18,6 +19,11 @@ Router.get("/craw/:url", async (req, res) => {
   let data = await craw.getData(url);
   res.json(data);
 })
+
+Router.get("/proxy/:url", (req, res) => {
+  let url = req.params.url;
+  proxy.proxyConnection(url, req, res);     
+});
 
 Router.get("*", (req, res) => {
   res.json({
