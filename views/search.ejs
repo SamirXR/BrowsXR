@@ -1,49 +1,15 @@
 <html>
   <head>
-    <title>Hikari</title>
+    <title>Hikari - Results of <%=search_query%></title>
+    <link rel="stylesheet" href="/css/app.css">
   </head>
-  <body>
+  <body onload="initSearch();">
     <h1>
       Results of: <%=search_query%>
     </h1>
     
-    <div id="results">
-      
-    </div>
+    <div id="results"></div>
     
-    <script>
-      function appendResult (title, description, link) {
-        const dom = document.getElementById("results");
-        dom.innerHTML = dom.innerHTML +
-        `
-          <div>
-            <h2 href="${link}">${title}</h2>
-            <a href="${link}">${link}</a>
-            <p>${description}</p>
-          </div>
-        `;
-      }
-      
-      function search () {
-        var callback = (response) => {
-          response = JSON.parse(response);
-          for (let result of response) {
-            appendResult(result.title, result.description, result.link)
-          }
-        };
-      
-        var http = new XMLHttpRequest();
-        http.onreadystatechange = function () {
-          if (this.readyState == 4) {
-            callback(this.responseText);
-          }
-        }
-      
-        http.open("GET", "/api/search/<%=search_query%>");
-        http.send();
-      }
-      
-      search();
-    </script>
+    <script src="/js/app.js"></script>
   </body>
 </html>
