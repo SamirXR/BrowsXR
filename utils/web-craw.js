@@ -1,4 +1,5 @@
-import { parse } from 'node-html-parser';
+const parser = require('node-html-parser');
+const parse = parser.parse;
 
 exports.getContent = (url) => {
     return new Promise((resolve, reject) => {
@@ -58,10 +59,9 @@ exports.getData = async (url) => {
   return new Promise(async (resolve, reject) => {
     
     let content = await this.getContent(url);
-    let dom = parse(content);
     
-    let favicon = this.getFavicon(dom);
-    let description = this.getDescription(dom);
+    let favicon;//this.getFavicon(dom);
+    let description;//this.getDescription(dom);
     
     resolve({favicon, description})
     
