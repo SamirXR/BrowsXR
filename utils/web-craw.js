@@ -32,6 +32,17 @@ exports.getContent = (url) => {
 };
 
 exports.getFavicon = (dom) => {
+  let linkTag = dom.split("<link");
+  
+  for (let tag of linkTag) {
+    let domTag = tag.split(">")[0];
+    let sanitizedTag = domTag.replace(/ /gi).replace(/\"/gi, "").replace(/\'/gi, "").replace(/\`/gi, "");
+    if (sanitizedTag.includes("rel=icon") || sanitizedTag.includes("rel=shortcuticon")) {
+      let obj = domTag.split("href=")[1];
+      let char = obj[0];
+    }
+  }
+  
   let favicon = null;
   let nodeList = dom.getElementsByTagName("link");
   for (var i = 0; i < nodeList.length; i++) {
@@ -58,10 +69,10 @@ exports.getDescription = (dom) => {
 exports.getData = async (url) => {
   return new Promise(async (resolve, reject) => {
     
-    let content = await this.getContent(url);
+    let dom = await this.getContent(url);
     
-    let favicon;//this.getFavicon(dom);
-    let description;//this.getDescription(dom);
+    let favicon = this.getFavicon(dom);
+    let description = this.getDescription(dom);
     
     resolve({favicon, description})
     
