@@ -5,8 +5,9 @@ Router.get("/search", (req, res) => {
   res.render("index.ejs");
 })
 
-Router.get("/search:params", (req, res) => {
-  res.render("search.ejs");
+Router.get("/search/:search_query", (req, res) => {
+  const search_query = req.params.search_query;
+  res.render("search.ejs", {search_query});
 })
 
 

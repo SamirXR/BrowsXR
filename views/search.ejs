@@ -4,7 +4,46 @@
   </head>
   <body>
     <h1>
-      Results of: 
+      Results of: <%=search_query%>
     </h1>
+    
+    <div id="results">
+      
+    </div>
+    
+    <script>
+      function appendResult (title, description, link) {
+        const dom = document.getElementById("results");
+        dom.innerHTML = dom.innerHTML +
+        `
+          <div>
+            <h2>${title}</h2>
+            <a href="${link}">${link}</a>
+            <p>${description}</p>
+          </div>
+        `;
+      }
+      
+      function search () {
+        var callback = (response) => {
+          response = JSON.parse(response);
+          for (let result of response) {
+            appendResult(result.title, result.description, result.link)
+          }
+        };
+      
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            callback(this.responseText);
+          }
+        }
+      
+        http.open("GET", "/api/search/<%=search_query%>");
+        http.send();
+      }
+      
+      search();
+    </script>
   </body>
 </html>
