@@ -3,24 +3,25 @@ const search_engine = require('search-engine-nodejs').default;
 const express = require("express");
 const Router = new express.Router();
 
-Router.get("/search/:search_query", (req, res) =>  {
-  res.end(req.params.search_query)
+Router.get("/api/search/:search_query", (req, res) =>  {
+  const search_query = req.params.search_query;
+  search(search_query, (results) => {
+    res.json(results);
+  })
 });
 
-function search (query) {
+function search (search_query, callback) {
   (async () => {
     const options = {
-        pageOfResult: 2,
         qs: {
-            q: 'Hello Search Engine'
+            q: search_query
         }
     }
  
-    // you can use: Aol, Ask, Baidu, Bing, Google or Yahoo
-    const results = await search_engine.Google(options)
-    console.log(results)
-    // This will display the second results page
-})();
+    const results = await search_engine.Bing(options);
+    callback(results);
+    console.log(results);
+  })();
 }
 
 module.exports = Router;

@@ -13,8 +13,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
-// Routes
+// RestAPI
 app.use(require("./routes/apiSearch.js"));
+
+// Routes
+app.use(require("./routes/searchRoute.js"));
 app.use(require("./routes/indexRoute.js"));
 
 // listen server
