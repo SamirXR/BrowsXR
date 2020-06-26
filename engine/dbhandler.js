@@ -6,12 +6,16 @@ const db = low(adapter);
 
 db.defaults({ urls:[], pages:[] }).write();
 
-function addWebsite (url, wordlist) {
+exports.ddWebsite = (url, wordlist) => {
   let entry = getModel({url, wordlist});
   
   db.get('urls')
   .push(entry)
   .write();
+}
+
+exports.search = () => {
+  
 }
 
 function getModel (obj) {
