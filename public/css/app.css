@@ -18,6 +18,11 @@ body {
   width: 200px;
 }
 
+.logo-sm {
+  width: 50px;
+  position: absolute;
+}
+
 .buttons-ui {
   margin-top: 20px;
 }
@@ -48,6 +53,10 @@ body {
   color: white;
 }
 
+.search-input-brand {
+  margin-left: 55px;
+}
+
 #search-input:focus {
   border: none;
   outline: none;
@@ -64,16 +73,33 @@ body {
   margin-right: 20px;
 }
 
-.text-l {
-  font-size: 21px;
+.text-results{
+  color: #AAA;
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
 }
 
 .result {
-  margin: 20px 0;
+  margin: 50px 0;
 }
 
 .result-title {
   display: block;
-  font-size: 24px;
+  font-size: 21px;
   color: white;
+}
+
+.result-url {
+  color: #DDD;
+  font-size: 15px;
+}
+
+.result-description {
+  width: 40%;
+  color: #BBB;
+}
+
+.web-badges {
+  margin-left: 10px;
 }
