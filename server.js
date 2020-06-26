@@ -10,9 +10,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middlewares
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 // Routes
+app.use(require("./routes/apiSearch.js"));
 app.use(require("./routes/indexRoute.js"));
 
 // listen server
