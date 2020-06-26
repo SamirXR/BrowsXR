@@ -1,0 +1,21 @@
+[
+  {
+    "url": "https://google.com",
+    "keywords": ["google", "google search", "search engine"]
+  },
+
+    {
+    "url": "https://buygoogle.com",
+    "keywords": ["buy", "googles", "online", "google"]
+  },
+
+    {
+    "url": "https://instagram.com/google",
+    "keywords": ["google", "instagram"]
+  },
+  
+  {
+    "url": "https://facebook.com",
+    "keywords": ["facebook", "social network", "social"]
+  }
+]

@@ -1,3 +1,4 @@
+// Bing (temporary api)
 const search_engine = require('search-engine-nodejs').default;
 
 const express = require("express");
@@ -9,6 +10,7 @@ Router.get("/api/search/:search_query", (req, res) =>  {
     res.json(results);
   })
 });
+
 
 function search (search_query, callback) {
   (async () => {
