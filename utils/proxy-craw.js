@@ -9,8 +9,10 @@ exports.proxyConnection = (url, req, res) => {
   let port = (url.includes("https://") ? 443 : 80);
   let path = url.split(hostname)[1];
   
+  console.log(url);
+  
   let options = {
-    Host:   hostname, 
+    hostname:   hostname, 
     port:   port,
     path:   path,
     method: 'GET',
@@ -25,13 +27,11 @@ exports.proxyConnection = (url, req, res) => {
     });
     
     cres.on('close', function(){
-      res.writeHead(cres.statusCode);
       res.end();
     });
     
     cres.on('end', function(){
       // finished, let's finish client request as well 
-      res.writeHead(cres.statusCode);
       res.end();
     });
   }).on('error', function(e) {
@@ -40,5 +40,7 @@ exports.proxyConnection = (url, req, res) => {
     res.writeHead(500);
     res.end();
   });
+  
+  creq.end();
   
 }
