@@ -1,6 +1,7 @@
 const http = require("http");
 const express = require("express");
 const engine = require('../engine/');
+const craw = require("../utils/web-craw");
 
 const Router = new express.Router();
 
@@ -10,19 +11,12 @@ Router.get("/api/v1/search/:search_query", (req, res) =>  {
   res.json(results);
 });
 
-Router.get("/api/v1/craw/:url", (req, res) => {
+Router.get("/api/v1/craw/:url", async (req, res) => {
   let url = req.params.url;
-  if (url.includes("http://") || url.includes("https://")) {
-    url = url.split("://")[1];
-  }
+  let content = craw.getContent(url);
   
-  let client = http.createClient(80, url);
-  let request = client.request();
-  request.on('response', function( res ) {
-    res.on('data', function( data ) {
-        console.log( data );
-    });
-} );
+  let data = await craw.getData(url);
+  res.json(data);
 })
 
 Router.get("/api/v1/*", (req, res) => {

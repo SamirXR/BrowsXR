@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 // RestAPI
+app.use("/api/v1/", require("./routes/API_V1.js"));
 app.use(require("./routes/apiSearch.js"));
 
 // Routes

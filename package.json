@@ -14,6 +14,7 @@
     "elasticsearch": "^16.7.1",
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
+    "node-html-parser": "^1.2.20",
     "puppeteer": "^4.0.1",
     "search-engine-nodejs": "^1.0.9"
   },

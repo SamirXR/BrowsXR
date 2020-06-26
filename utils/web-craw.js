@@ -1,3 +1,5 @@
+import { parse } from 'node-html-parser';
+
 exports.getContent = (url) => {
     return new Promise((resolve, reject) => {
         const http      = require('http'),
@@ -27,3 +29,41 @@ exports.getContent = (url) => {
         });
     });
 };
+
+exports.getFavicon = (dom) => {
+  let favicon = null;
+  let nodeList = dom.getElementsByTagName("link");
+  for (var i = 0; i < nodeList.length; i++) {
+    if ((nodeList[i].getAttribute("rel") == "icon")||(nodeList[i].getAttribute("rel") == "shortcut icon")) {
+      favicon = nodeList[i].getAttribute("href");
+    }
+  }
+  
+  return favicon;
+}
+
+exports.getDescription = (dom) => {
+  let desc = null;
+  let nodeList = dom.getElementsByTagName("meta");
+  for (var i = 0; i < nodeList.length; i++) {
+    if ((nodeList[i].getAttribute("name") == "description") && (nodeList[i].getAttribute("content") != null)) {
+      desc= nodeList[i].getAttribute("content");
+    }
+  }
+  
+  return desc;
+}
+
+exports.getData = async (url) => {
+  return new Promise(async (resolve, reject) => {
+    
+    let content = await this.getContent(url);
+    let dom = parse(content);
+    
+    let favicon = this.getFavicon(dom);
+    let description = this.getDescription(dom);
+    
+    resolve({favicon, description})
+    
+  });
+}
