@@ -1,0 +1,15 @@
+body {
+  background-color: #1D1D1d;
+  font-family: arial;
+}
+
+.welcome-ui {
+  text-align: center;
+  margin: 15% auto;
+  width: 70%;
+}
+
+.title {
+  color: white;
+  font-size: 45px;
+}
