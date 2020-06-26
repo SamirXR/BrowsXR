@@ -11,8 +11,20 @@ exports.getContent = (url) => {
         if (url.toString().indexOf("https") === 0) {
             client = https;
         }
+      
+        let hostname = (url.includes("://") ? url.split("://")[1] : url).split("/")[0];
+      
+        const options = {
+          hostname: hostname,
+          port: (url.includes("https://") ? 443 : 80),
+          path: '/',
+          method: 'GET',
+          headers: {
+            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+          }
+        }
 
-        client.get(url, (resp) => {
+        client.get(options, (resp) => {
             let data = '';
 
             // A chunk of data has been recieved.
@@ -37,7 +49,7 @@ exports.getFavicon = (dom) => {
   
   for (let tag of linkTag) {
     let domTag = tag.split(">")[0];
-    let sanitizedTag = domTag.replace(/ /gi).replace(/\"/gi, "").replace(/\'/gi, "").replace(/\`/gi, "");
+    let sanitizedTag = domTag.replace(/ /gi, "").replace(/\"/gi, "").replace(/\'/gi, "").replace(/\`/gi, "");
     if (sanitizedTag.includes("rel=icon") || sanitizedTag.includes("rel=shortcuticon")) {
       let obj = domTag.split("href=")[1];
       let char = obj[0];
@@ -68,7 +80,7 @@ exports.getDescription = (dom) => {
   let metaTag = dom.split("<meta");
   for (let tag of metaTag) {
     let domTag = tag.split(">")[0];
-    let sanitizedTag = domTag.replace(/ /gi).replace(/\"/gi, "").replace(/\'/gi, "").replace(/\`/gi, "");
+    let sanitizedTag = domTag.replace(/ /gi, "").replace(/\"/gi, "").replace(/\'/gi, "").replace(/\`/gi, "");
     if (sanitizedTag.includes("name=description")) {
       let obj = domTag.split("content=")[1];
       let char = obj[0];
@@ -85,8 +97,6 @@ exports.getData = async (url) => {
   return new Promise(async (resolve, reject) => {
     
     let dom = await this.getContent(url);
-    console.log(dom)
-    
     let favicon = this.getFavicon(dom);
     let description = this.getDescription(dom);
     
