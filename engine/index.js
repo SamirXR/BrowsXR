@@ -1,6 +1,14 @@
-let test = {
+let test = [
+  {
+    "url": "https://google.com",
+    "keywords": ["google", "google search", "search engine"]
+  },
   
-}
+  {
+    "url": "https://facebook.com",
+    "keywords": ["facebook", "social network", "social"]
+  }
+]
 
 exports.search = (str) => {
   while (str.includes("  ")) {
