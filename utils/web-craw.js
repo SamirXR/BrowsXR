@@ -51,7 +51,6 @@ exports.getFavicon = (dom) => {
   for (let tag of metaTag) {
     let domTag = tag.split(">")[0];
     let sanitizedTag = domTag.replace(/ /gi).replace(/\"/gi, "").replace(/\'/gi, "").replace(/\`/gi, "");
-    console.log(sanitizedTag);
     if (sanitizedTag.includes("itemprop=image")) {
       let obj = domTag.split("content=")[1];
       let char = obj[0];
@@ -61,27 +60,23 @@ exports.getFavicon = (dom) => {
     }
   }
   
-  /*
-  let favicon = null;
-  let nodeList = dom.getElementsByTagName("link");
-  for (var i = 0; i < nodeList.length; i++) {
-    if ((nodeList[i].getAttribute("rel") == "icon")||(nodeList[i].getAttribute("rel") == "shortcut icon")) {
-      favicon = nodeList[i].getAttribute("href");
-    }
-  }*/
-  
   return favicon;
 }
 
 exports.getDescription = (dom) => {
   let desc = null;
-  /*
-  let nodeList = dom.getElementsByTagName("meta");
-  for (var i = 0; i < nodeList.length; i++) {
-    if ((nodeList[i].getAttribute("name") == "description") && (nodeList[i].getAttribute("content") != null)) {
-      desc= nodeList[i].getAttribute("content");
+  let metaTag = dom.split("<meta");
+  for (let tag of metaTag) {
+    let domTag = tag.split(">")[0];
+    let sanitizedTag = domTag.replace(/ /gi).replace(/\"/gi, "").replace(/\'/gi, "").replace(/\`/gi, "");
+    if (sanitizedTag.includes("name=description")) {
+      let obj = domTag.split("content=")[1];
+      let char = obj[0];
+          
+      let url = obj.split(char)[1];
+      desc = url;
     }
-  }*/
+  }
   
   return desc;
 }
@@ -90,17 +85,21 @@ exports.getData = async (url) => {
   return new Promise(async (resolve, reject) => {
     
     let dom = await this.getContent(url);
-    // console.log(dom)
+    console.log(dom)
     
     let favicon = this.getFavicon(dom);
     let description = this.getDescription(dom);
     
     if (!url.includes("://")) {
-      url =?
+      url = "https://" + url;
     }
     
-    if (!favicon.includes("://")) {
-      if (!favicon.includes(url.split()))
+    if (favicon != null && !favicon.includes("://")) {
+      if (!favicon.includes(url.split("://")[1])) {
+        favicon = url + favicon;
+      } else {
+        favicon = url.split("://")[0] + "://" + url + (favicon.startsWith("/") ? favicon : "/" + favicon);
+      }
     }
     
     resolve({favicon, description})
