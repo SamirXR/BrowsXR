@@ -6,15 +6,15 @@ function search() {
 function appendResult (title, description, link) {
   const dom = document.getElementById("results");
   dom.innerHTML = dom.innerHTML + `
-    <div>
-      <h2 href="${link}">${title}</h2>
-      <a href="${link}">${link}</a>
-      <p>${description}</p>
+    <div class="result">
+      <span href="${link}" class="result-title" href="${link}">${title}</h2>
+      <a class="result-url" href="${link}">${link}</a>
+      <p class="result-description">${description}</p>
     </div>
 `;
 }
       
-function initSearch () {
+function initSearch (search_query) {
   var callback = (response) => {
     response = JSON.parse(response);
     for (let result of response) {
@@ -29,6 +29,6 @@ function initSearch () {
     }
   }
       
-  http.open("GET", "/api/search/<%=search_query%>");
+  http.open("GET", "/api/search/" + search_query);
   http.send();
 }

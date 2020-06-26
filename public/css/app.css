@@ -52,3 +52,28 @@ body {
   border: none;
   outline: none;
 }
+
+.container {
+  margin: 40px;
+  color: white;
+}
+
+.brand {
+  color: white;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.text-l {
+  font-size: 21px;
+}
+
+.result {
+  margin: 20px 0;
+}
+
+.result-title {
+  display: block;
+  font-size: 24px;
+  color: white;
+}
