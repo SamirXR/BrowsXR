@@ -7,7 +7,7 @@ function appendResult (title, description, link) {
   const dom = document.getElementById("results");
   dom.innerHTML = dom.innerHTML + `
     <div class="result">
-      <span href="${link}" class="result-title" href="${link}">${title} <div class="web-badges">${getBadges(link)}</div> </span>
+      <span href="${link}" class="result-title" href="${link}"><div class="web-badges">${getBadges(link)}</div> ${title}</span>
       <a class="result-url" href="${link}">${link}</a>
       <p class="result-description">${description}</p>
     </div>
@@ -18,7 +18,7 @@ function getBadges (url) {
   let badges = "";
   
   if (url.startsWith("https://"))
-    badges = badges + '<img class="badge" src="https://cdn.glitch.com/b52b37d1-91cc-47b8-8606-b516f0e7310c%2Fssl.png?v=1593137424199"></img>';
+    badges = badges + '<img class="badge" src="https://cdn.glitch.com/b52b37d1-91cc-47b8-8606-b516f0e7310c%2F102-1020750_file-move-protect-svg-green-padlock-icon-ssl.png?v=1593137781975"></img>';
   
   return badges;
 }

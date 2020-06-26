@@ -101,5 +101,10 @@ body {
 }
 
 .web-badges {
-  margin-left: 10px;
+  display: inline-block;
+}
+
+.badge {
+  height: 15px;
+  margin: 0 5px;
 }
