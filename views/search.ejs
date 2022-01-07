@@ -1,7 +1,7 @@
 
 
 
-<html>
+<center><html>
   <head>
     <title>Git19 - Results of <%=search_query%></title>
     <link rel="stylesheet" href="/css/app.css">
@@ -26,7 +26,7 @@
       initSearch(query);
     </script>
   </body>     
-</html>
+</html></center>
 
 
 
@@ -43,6 +43,24 @@ body {
 }
 
 
+	body {
+	background: linear-gradient(-45deg, #383535, #666363, #828282, #242222);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 
 </style>
 </head>
