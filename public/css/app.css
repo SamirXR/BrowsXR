@@ -1,6 +1,6 @@
 body {
   background-color: #1D1D1D;
-  font-family: arial;
+  font-family: Arial;
 }
 
 .welcome-ui {
@@ -39,9 +39,9 @@ body {
 }
 
 .bttn {
-  height: 40px;
-  width: 100px;
-  border-radius: 30px;
+  height: 49px;
+  width: 75px;
+  border-radius: 10px;
   border: none;
   background-color: #2D2D2D;
   color: white;
@@ -119,3 +119,5 @@ body {
   height: 15px;
   margin: 0 5px;
 }
+
+
