@@ -10,6 +10,8 @@ We offers a 100% transparent privacy polic :)
 
 However,Proxy isnt functional for now,but we'll fix it ASAP :)
 
+Search engine :  [BrowsXR](https://browsxr.glitch.me/)
+
 WE DONT OWN ANYTHING!!!!ITS OPEN SOURCE : )
 
  <a href="https://discord.gg/P9gGZaXWGR">
