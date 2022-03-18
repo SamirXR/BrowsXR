@@ -1,10 +1,10 @@
 {
-  "//1": "A Basic ",
+  "//1": "A Basic search engine :)",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
   "name": "hello-express",
   "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "description": "Basic search engine, that's using the",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
